@@ -1,36 +1,34 @@
 # New York Times Bestsellers CLI
-This is my first CLI project written with Ruby. It is currently a work in progress
+This is my first CLI project written with Ruby. It is currently a work-in-progress
 and there will be many edits to files along with the addition and deletion of
 others.
 
 You'll be able to access book information from the New York Times Bestsellers
 lists based on a given date and category*.
 
-\* From the Weekly Bestsellers lists, not the Monthly
+\* *From the Weekly Bestsellers lists, not the Monthly*
 
 TODO: Wireframe class structure for:
 * CLI
 * Book
 * Category
 
-
-TODO: Begin to research possible features to add to the program
 ## Installation
-**NOTE**: This project has not been registered with Ruby Gems. Therefore, the steps below will not work. Instead, you should just ***fork/ clone the repo*** 
 
-Add this line to your application's Gemfile:
+Fork and clone this repository to your local machine. Save it somewhere it'll be easy to find. Then, `cd` to `nyt_bestsellers_cli`.
 
-```ruby
-gem 'nyt_bestsellers_cli'
+### Getting an API Key
+This project uses the New York Times Books API. As far as I know, you'll have to [sign up for an account](https://developer.nytimes.com/accounts/create) on the New York Times Developer Network in order to be able to generate an API key. You'll need this key to be able to fetch the Book and Category data.
+
+### Working with `dotenv`
+For security reasons, it's generally a good idea to take measures to ensure sensitive information isn't exposed to hackers. One of the ways I found was storing the API key as an *environment variable* that can only be seen on your local machine; the actual key isn't seen on the frontend at all.
+
+Be sure to change the name of `example.env` to `.env` and edit:
+
+```
+NYT_API_KEY = "your-api-key-here-between-the-quotes"
 ```
 
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install nyt_bestsellers_cli
 
 ## Usage
 
@@ -74,7 +72,7 @@ Please select a category:
 11. Young Adult Hardcover
 ```
 
-
+Choose a category, and you will then be
 
 
 ## Development
