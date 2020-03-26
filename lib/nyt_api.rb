@@ -1,3 +1,8 @@
+require "dotenv"
+require "rest-client"
+require "pry"
+Dotenv.load
+
 class NYTimesAPI
   @@base_url = "https://api.nytimes.com/svc/books/v3/lists/"
   @@api_key = ENV["NYT_API_KEY"]
@@ -14,13 +19,12 @@ class NYTimesAPI
   end
 
   def self.fetch_categories
-    response = RestClient.get("#{@@base_url}names.json?api-key=#{ENV["NYT_API_KEY"]}")
+    response = RestClient.get("#{@@base_url}names.json?api-key=#{self.api_key}")
     response = JSON.parse(response.body, symbolize_names:true)
     response[:results]
   end
-  #binding.pry
-end
 
-date = "2008-06-02"
-category = "Hardcover-nonfiction"
-#binding.pry
+  def self.api_key
+    @@api_key
+  end
+end

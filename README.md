@@ -55,24 +55,8 @@ Unfortunately, the NYT Books API seems to only fetch list data from as far back 
 Please enter a valid date (YYYY-MM-DD):
 ```
 
-You'll then be presented with a list of categories; you must select one:
-
-```
-Please select a category:
-1. Combined Print & E-Book Fiction
-2. Combined Print & E-Book Nonfiction
-3. Hardcover Fiction
-4. Hardcover Nonfiction
-5. Paperback Trade Fiction
-6. Paperback Nonfiction
-7. Advice, How-To & Miscellaneous
-8. Children’s Middle Grade Hardcover
-9. Children’s Picture Books
-10. Children’s Series
-11. Young Adult Hardcover
-12. E-Book Fiction
-13. E-Book Nonfiction
-```
+You'll then be presented with a list of categories; you must select one by
+entering its corresponding number. 
 
 Choose a category, and you will then be
 
