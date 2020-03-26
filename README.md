@@ -70,6 +70,8 @@ Please select a category:
 9. Children’s Picture Books
 10. Children’s Series
 11. Young Adult Hardcover
+12. E-Book Fiction
+13. E-Book Nonfiction
 ```
 
 Choose a category, and you will then be

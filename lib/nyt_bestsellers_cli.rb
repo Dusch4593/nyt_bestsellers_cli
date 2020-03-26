@@ -1,5 +1,4 @@
 
-
 class NYT_Bestsellers_CLI
   def call
     puts "Welcome to the New York Times Bestsellers List, CLI Edition!"
@@ -15,6 +14,10 @@ class NYT_Bestsellers_CLI
     # ask the user to select a category
     # TODO: This should actually be created from Category objects that
     #       each represent their own category.
+
+    # What if I made a Category method that creates a hash of these categories
+    # and whatever number the user picks is comapred with the category_id of
+    # each Category object in the hash?
     puts "1. Combined Print & E-Book Fiction"
     puts "2. Combined Print & E-Book Nonfiction"
     puts "3. Hardcover Fiction"
@@ -26,6 +29,8 @@ class NYT_Bestsellers_CLI
     puts "9. Children’s Picture Books"
     puts "10. Children’s Series"
     puts "11. Young Adult Hardcover"
+    puts "12. E-Book Fiction"
+    puts "13. E-Book Nonfiction"
     puts "Please select a category (1-11): "
 
     category_input = gets.strip.to_i
