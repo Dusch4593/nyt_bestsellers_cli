@@ -15,16 +15,23 @@ class NYTimesAPI
   # each API call
 
   def self.fetch_bestseller_list(date, category)
-    RestClient.get("#{base_url} ")
+    response = RestClient.get("#{self.base_url}#{date}/#{category}.json?api-key=#{ENV["NYT_API_KEY"]}")
+    response = JSON.parse(resonse.body, symbolize_names:true)
+    response[:results][:books].slice(0, self.fetch_categories.length-44)
   end
 
   def self.fetch_categories
-    response = RestClient.get("#{@@base_url}names.json?api-key=#{self.api_key}")
+    response = RestClient.get("#{@@base_url}names.json?api-key=#{@@api_key}")
     response = JSON.parse(response.body, symbolize_names:true)
-    response[:results]
+    response[:results].slice(0, self.fetch_categories.length-44)
+
   end
 
   def self.api_key
     @@api_key
+  end
+
+  def self.base_url
+    @@base_url
   end
 end

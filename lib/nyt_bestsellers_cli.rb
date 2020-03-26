@@ -1,4 +1,4 @@
-
+require "pry"
 class NYT_Bestsellers_CLI
 
   def call
@@ -16,17 +16,21 @@ class NYT_Bestsellers_CLI
     # TODO: This should actually be created from Category objects that
     #       each represent their own category.
 
-    # What if I made a Category method that creates a hash of these categories
-    # and whatever number the user picks is comapred with the category_id of
-    # each Category object in the hash?
     puts "-------------------------------------------------------"
     Category.display_categories
     puts "-------------------------------------------------------"
     print "Please choose a choose a category from the list above: "
-    category_index= gets.strip.to_i-1
+    category_index = gets.strip.to_i-1 #input to integer
+    chosen_category = Category.load_categories[category_index]
+    category_url = chosen_category[:list_name_encoded]
 
-    # take the date and category_index and display
-    # the first 15 books fetched from the NYT Books API
+    puts "-------------------------------------------------------"
+    # Category.display_books
+    chosen_category.display_books(date, category_url)
+    # Using a Books.load_books method to create
+    # Adds the books (15 max!) to the @books array of that Category instance
+    # Iterates through @books and puts out each book.
+    puts "-------------------------------------------------------"
 
 
     # ask the user if they'd like to support struggling local book stores

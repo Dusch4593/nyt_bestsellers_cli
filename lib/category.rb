@@ -1,5 +1,6 @@
 require 'pry'
 require_relative "./nyt_api"
+
 class Category
   # Class- and instance-level variables
   @@all = []
@@ -34,11 +35,11 @@ class Category
 
     # NOTE: Display a max of 15 categories!
     results = NYTimesAPI.fetch_categories
+    sleep(6)
     category_array = results.collect do |result|
       self.new(result[:display_name], result[:list_name_encoded])
     end
-    category_array.slice!(44,category_array.length-1)
-
+    category_array
   end
 
   # Displays an ordered list of the Categories
@@ -54,7 +55,9 @@ class Category
 
   end
 
-  def get_books
+  def display_books(date, category)
     # Use some Book method to use the selected index to access
+    books = Book.load_books(date, category)
+    Book.display_books(books)
   end
 end
