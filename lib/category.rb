@@ -41,18 +41,17 @@ class Category
     end
     category_array
   end
+
+
   # Displays an ordered list of the Categories
   def self.display_categories
 
     category_array = self.load_categories
     puts "Loading Categories..."
     sleep 3
-
-
     category_array.each.with_index(1) do |category, index|
         puts "#{index}. #{category.display_name}"
     end
-
   end
 
   def display_books(date, category)

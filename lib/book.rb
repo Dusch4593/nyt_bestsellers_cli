@@ -4,7 +4,7 @@ require_relative "./nyt_api"
 class Book
   # Class- and instance-level variables
   @@all = []
-  attr_accessor :title, :author, :category, :description, :price, :rank
+  attr_accessor :title, :author, :category, :description, :price, :rank, :local_link
 
   # Initialize object instance with a book title; saved to @@all
   def initialize(title)
@@ -23,13 +23,7 @@ class Book
   end
 
   def self.load_books(date, category)
-    # takes a date and category chosen by the user
-    # and fetches a NYT Bestsellers list.
-    # I'll collect the necessary data to generate individual
-    # Book objects.
-
     results = NYTimesAPI.fetch_bestseller_list(date, category)
-
     books = results.collect do |result|
       book = self.new(result[:title])
       book.author = result[:author]
@@ -37,6 +31,7 @@ class Book
       book.price = result[:price]
       book.description = result[:description]
       book.category = category.split("-").each{|w| w.capitalize!}.join(" ")
+      book.local_link = result[:buy_links].last[:url]
     end
     books
   end
@@ -65,6 +60,14 @@ class Book
 
   # Display information for a given Book object
   def display_info
+    puts "Title: #{self.format_title}"
+    puts "Author: #{self.author}"
+    puts "Price: $#{self.price}"
+    puts "Description: #{self.description}"
+  end
 
+  def buy_local # Should be an instance method of the Book class
+    #binding.pry
+    system("open", self.local_link) # Book.url should be a String; this method actually opens a web page!!!
   end
 end

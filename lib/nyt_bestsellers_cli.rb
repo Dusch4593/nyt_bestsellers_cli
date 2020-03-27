@@ -4,47 +4,77 @@ require "json"
 
 require_relative "./category.rb"
 class NYT_Bestsellers_CLI
-
   def call
     puts "Welcome to the New York Times Bestsellers List, CLI Edition!"
     puts "------------------------------------------------------------"
     puts "The NYT Bestsellers List has featured some"
     puts "of America's most successful and widely"
-    puts "read books in the United States!\n"
+    puts "read books!\n"
     puts "Come search for bestsellers!"
-    # ask user to give a date in YYYY-MM-DD format (and it mustn't be before June, 6th, 2008).
-    print "Please enter a valid date (YYYY-MM-DD) that is not before 2008-06-02: "
-    date = gets.strip
-    # ask the user to select a category
-    # TODO: This should actually be created from Category objects that
-    #       each represent their own category.
 
+    # store a valid date to 'date'
+    date = self.get_date
     puts "-------------------------------------------------------"
+
+
     Category.display_categories
-    puts "-------------------------------------------------------"
-    print "Please choose a choose a category from the list above: "
-    category_index = gets.strip.to_i-1 #input to integer
-    chosen_category = Category.load_categories[category_index]
+    # store chosen category to 'category_index'
+    category_index = self.get_category
+    chosen_category = Category.all[category_index]
     category_url = chosen_category.list_name_encoded
 
     puts "-------------------------------------------------------"
+
     chosen_category.display_books(date, category_url)
 
-    #chosen_category.display_books(date, category_url)
-    # Using a Books.load_books method to create
-    # Adds the books (15 max!) to the @books array of that Category instance
-    # Iterates through @books and puts out each book.
     puts "-------------------------------------------------------"
-    print "Choose a book from the list above and learn more about it!"
-    book_index = gets.strip.to_i-1
-
-    # ask the user if they'd like to support struggling local book stores
-    # by visiting indiebound.com and buying local online.
-
-    # ask if they want to go back to the list of Categories
-
-    # ask if they'd like to exit
+    book_index = self.get_book
+    chosen_book = Book.all[book_index]
+    puts "-------------------------------------------------------"
+    chosen_book.display_info
+    print "Would you like to support local book stores during COVID-19 by purchasing online? (y/n): "
+    input = gets.strip
+    case input.downcase
+      when "y"
+        chosen_book.buy_local
+        puts "Thank you for visiting!"
+      when "n"
+        puts "Thank you for visiting!"
+    end
+    puts "-------------------------------------------------------"
   end
 
+  def get_date
+    # ask user to give a date in YYYY-MM-DD format (and it mustn't be before June, 6th, 2008).
+    print "Please enter a valid date (YYYY-MM-DD) that is not before 2008-06-02: "
+    date = gets.strip
+    if(/^20[012][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])/.match(date))
+      date
+    else
+      puts "Invalid Date! Please try again."
+      self.get_date
+    end
+  end
 
+  def get_category
+    print "Please choose a choose a category from the list above: "
+    category_index = gets.strip.to_i-1 #input to integer
+    if(category_index.between?(1,15))
+      category_index
+    else
+      puts "Invalid choice! Please try again."
+      self.get_category
+    end
+  end
+
+  def get_book
+    puts "Choose a book from the list above to learn more about it: "
+    book_index = gets.strip.to_i-1
+    if(book_index.between?(1,15))
+      book_index
+    else
+      puts "Invalid choice! Please try again."
+      self.get_book
+    end
+  end
 end
