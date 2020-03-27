@@ -1,20 +1,21 @@
 require "pry"
 require "rest-client"
 require "json"
+require "colorize"
 
 require_relative "./category.rb"
 class NYT_Bestsellers_CLI
   def call
-    puts "Welcome to the New York Times Bestsellers List, CLI Edition!"
-    puts "------------------------------------------------------------"
-    puts "The NYT Bestsellers List has featured some"
-    puts "of America's most successful and widely"
-    puts "read books!\n"
-    puts "Come search for bestsellers!"
+    puts "Welcome to the New York Times Bestsellers List, CLI Edition!".colorize(:red)
+    puts "------------------------------------------------------------".colorize(:yellow)
+    puts "The NYT Bestsellers List has featured some".colorize(:light_yellow)
+    puts "of America's most successful and widely".colorize(:light_yellow)
+    puts "read books!".colorize(:light_yellow)
+    puts "Come search for bestsellers!".colorize(:light_yellow)
 
     # store a valid date to 'date'
     date = self.get_date
-    puts "-------------------------------------------------------"
+    puts "-------------------------------------------------------".colorize(:yellow)
 
 
     Category.display_categories
@@ -23,14 +24,14 @@ class NYT_Bestsellers_CLI
     chosen_category = Category.all[category_index]
     category_url = chosen_category.list_name_encoded
 
-    puts "-------------------------------------------------------"
+    puts "-------------------------------------------------------".colorize(:yellow)
 
     chosen_category.display_books(date, category_url)
 
-    puts "-------------------------------------------------------"
+    puts "-------------------------------------------------------".colorize(:yellow)
     book_index = self.get_book
     chosen_book = Book.all[book_index]
-    puts "-------------------------------------------------------"
+    puts "-------------------------------------------------------".colorize(:yellow)
     chosen_book.display_info
     print "Would you like to support local book stores during COVID-19 by purchasing online? (y/n): "
     input = gets.strip
@@ -41,12 +42,13 @@ class NYT_Bestsellers_CLI
       when "n"
         puts "Thank you for visiting!"
     end
-    puts "-------------------------------------------------------"
+    puts "-------------------------------------------------------".colorize(:yellow)
   end
 
   def get_date
     # ask user to give a date in YYYY-MM-DD format (and it mustn't be before June, 6th, 2008).
-    print "Please enter a valid date (YYYY-MM-DD) that is not before 2008-06-02: "
+    puts "Unfortunately, the NYT Books API seems to only fetch list data from as far back as June 6th, 2008 (2008-06-02)"
+    print "Please enter a valid date (YYYY-MM-DD): "
     date = gets.strip
     if(/^20[012][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])/.match(date))
       date

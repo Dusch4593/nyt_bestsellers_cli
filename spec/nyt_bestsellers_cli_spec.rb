@@ -1,3 +1,4 @@
+
 RSpec.describe NytBestsellersCli do
   it "has a version number" do
     expect(NytBestsellersCli::VERSION).not_to be nil

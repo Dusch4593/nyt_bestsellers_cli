@@ -15,7 +15,7 @@ TODO: Wireframe class structure for:
 
 ## Installation
 
-Fork and clone this repository to your local machine. Save it somewhere it'll be easy to find. Then, `cd` to `nyt_bestsellers_cli`.
+Fork and clone this repository to your local machine. Save it somewhere it'll be easy to find. Then, `cd` into `nyt_bestsellers_cli`.
 
 ### Getting an API Key
 This project uses the New York Times Books API. As far as I know, you'll have to [sign up for an account](https://developer.nytimes.com/accounts/create) on the New York Times Developer Network in order to be able to generate an API key. You'll need this key to be able to fetch the Book and Category data.
@@ -29,11 +29,7 @@ Be sure to change the name of `example.env` to `.env` and edit:
 NYT_API_KEY = "your-api-key-here-between-the-quotes"
 ```
 
-
 ## Usage
-
-TODO: Write usage instructions here
-
 Change into the directory of this repo and enter the following command
 in your terminal:
 
@@ -56,9 +52,20 @@ Please enter a valid date (YYYY-MM-DD):
 ```
 
 You'll then be presented with a list of categories; you must select one by
-entering its corresponding number. 
+entering its corresponding number.
 
-Choose a category, and you will then be
+Choose a category, and you will then be shown the NYT Bestsellers List based
+on the date you gave.
+
+Select a book to get more information.
+
+At the end of the program, you'll be asked if you'd like to
+help support local book stores who are struggling during the
+COVID-19 outbreak. If you type `y` your Internet browser will direct you to
+www.indiebound.org where you can buy the selected book from a local store.
+
+Please enjoy and feel free to let me know if you have any issues with
+setup or usage! 
 
 
 ## Development

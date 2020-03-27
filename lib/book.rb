@@ -39,7 +39,7 @@ class Book
   # Display Book objects in @@all
   def self.display_books
     self.all.each do |book|
-      puts "#{book.rank}. #{book.format_title} by #{book.author}"
+      puts "#{book.rank}. #{book.format_title} by #{book.author}".colorize(:magenta)
     end
   end
 

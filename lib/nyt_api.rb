@@ -16,6 +16,7 @@ class NYTimesAPI
     response = RestClient.get("#{self.base_url}#{date}/#{category}.json?api-key=#{self.api_key}")
     response = JSON.parse(response.body, symbolize_names:true)
     results = response[:results][:books]
+    #binding.pry
     results
   end
 

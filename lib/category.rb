@@ -47,17 +47,17 @@ class Category
   def self.display_categories
 
     category_array = self.load_categories
-    puts "Loading Categories..."
+    puts "Loading Categories...".colorize(:light_cyan)
     sleep 3
     category_array.each.with_index(1) do |category, index|
-        puts "#{index}. #{category.display_name}"
+        puts "#{index}. #{category.display_name}".colorize(:cyan)
     end
   end
 
   def display_books(date, category)
     # Use some Book method to use the selected index to access
     books = Book.load_books(date, category)
-    puts "Loading Bestsellers List..."
+    puts "Loading Bestsellers List...".colorize(:light_cyan)
     sleep 3
     Book.display_books
   end
