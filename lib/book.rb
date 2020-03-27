@@ -27,25 +27,41 @@ class Book
     # and fetches a NYT Bestsellers list.
     # I'll collect the necessary data to generate individual
     # Book objects.
+
     results = NYTimesAPI.fetch_bestseller_list(date, category)
-    sleep(6)
+
     books = results.collect do |result|
       book = self.new(result[:title])
       book.author = result[:author]
       book.rank = result[:rank]
       book.price = result[:price]
       book.description = result[:description]
-      book.category = category.display_name
+      book.category = category.split("-").each{|w| w.capitalize!}.join(" ")
     end
     books
   end
 
   # Display Book objects in @@all
-  def self.display_books(books)
-    books.each do |book|
-      puts "#{rank}. #{book.title} by #{book.author}"
+  def self.display_books
+    self.all.each do |book|
+      puts "#{book.rank}. #{book.format_title} by #{book.author}"
     end
   end
+
+  def format_title
+    title_array = self.title.split(" ")
+    title_array.each do|w|
+      if(w == "THE" && w == title_array.first)
+        w.capitalize!
+      elsif(w == "THE" || w == "OF" || w == "AND" || w == "TO")
+        w.downcase!
+      else
+        w.capitalize!
+      end
+    end
+    title_array.join(" ").gsub("and", "&")
+  end
+
 
   # Display information for a given Book object
   def display_info
