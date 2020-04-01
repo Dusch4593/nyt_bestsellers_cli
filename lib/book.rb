@@ -1,6 +1,3 @@
-require 'pry'
-require_relative "./nyt_api"
-
 class Book
   # Class- and instance-level variables
   @@all = []
@@ -46,7 +43,7 @@ class Book
   def format_title
     title_array = self.title.split(" ")
     title_array.each do|w|
-      if(w == "THE" && w == title_array.first)
+      if(w == "THE" || w == "TO" && w == title_array.first)
         w.capitalize!
       elsif(w == "THE" || w == "OF" || w == "AND" || w == "TO")
         w.downcase!
@@ -66,7 +63,8 @@ class Book
     puts "Description: #{self.description}"
   end
 
-  def buy_local # Should be an instance method of the Book class
+  # This opens a a selected Book's page on www.indiebound.org
+  def buy_local
     #binding.pry
     system("open", self.local_link) # Book.url should be a String; this method actually opens a web page!!!
   end

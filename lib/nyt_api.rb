@@ -1,8 +1,3 @@
-require "dotenv"
-require "rest-client"
-require "pry"
-Dotenv.load
-
 class NYTimesAPI
   @@base_url = "https://api.nytimes.com/svc/books/v3/lists/"
   @@api_key = ENV["NYT_API_KEY"]

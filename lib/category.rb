@@ -1,7 +1,3 @@
-require 'pry'
-require_relative "./nyt_api"
-require_relative "./book.rb"
-
 class Category
   # Class- and instance-level variables
   @@all = []
@@ -42,7 +38,6 @@ class Category
     category_array
   end
 
-
   # Displays an ordered list of the Categories
   def self.display_categories
 
@@ -59,6 +54,7 @@ class Category
     books = Book.load_books(date, category)
     puts "Loading Bestsellers List...".colorize(:light_cyan)
     sleep 3
+    puts "Here is the Top 15 books on the NYT Bestsellers List!"
     Book.display_books
   end
 end
