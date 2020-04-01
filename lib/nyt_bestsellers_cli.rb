@@ -58,12 +58,12 @@ class NYT_Bestsellers_CLI
       chosen_book.buy_local
       puts "Thank you for visiting!"
     when "n"
-      puts ""
-      puts "1. go back to the Bestsellers List"
-      puts "2. go back to Categories"
-      puts "3. search for another Bestsellers List"
-      puts "4. exit the program"
-      print "What would you like to do, now? "
+      puts "-------------------------------------------------------".colorize(:yellow)
+      puts "1. Go back to the Bestsellers List"
+      puts "2. Go back to the Categories"
+      puts "3. Search for another Bestsellers List"
+      puts "4. Exit the program"
+      print "Choose an option to continue: "
       input = gets.strip.downcase
       case input
       when "1"
