@@ -51,7 +51,7 @@ class NYT_Bestsellers_CLI
   end
 
   def menu_options(date, category, book)
-    print "Would you like to support local book stores and buy online? (#{book.local_link}) during COVID-19 by purchasing online? (y/n): "
+    print "Would you like to support local book stores and buy online? (y/n | #{book.local_link}): "
     input = gets.strip.downcase
     case input
     when "y"
