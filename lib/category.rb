@@ -54,7 +54,7 @@ class Category
     books = Book.load_books(date, category)
     puts "Loading Bestsellers List...".colorize(:light_cyan)
     sleep 3
-    puts "Here is the Top 15 books on the NYT Bestsellers List!"
+    puts "Here are the Top 15 books on the NYT Bestsellers List!"
     Book.display_books
   end
 end
