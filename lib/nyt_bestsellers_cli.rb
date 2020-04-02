@@ -11,8 +11,7 @@ class NYT_Bestsellers_CLI
     date = pick_date
     category = pick_category
     book = pick_book(category, date)
-    get_more_info(book)
-    menu_options(date, category, book)
+    get_more_info(date, category, book)
   end
 
   def pick_date
@@ -45,49 +44,53 @@ class NYT_Bestsellers_CLI
     chosen_book
   end
 
-  def get_more_info(book)
+  def get_more_info(date, category, book)
     puts "-------------------------------------------------------".colorize(:yellow)
     book.display_info
-  end
-
-  def menu_options(date, category, book)
     print "Would you like to support local book stores and buy online? (y/n | #{book.local_link}): "
     input = gets.strip.downcase
     case input
     when "y"
-      chosen_book.buy_local
+      book.buy_local
       puts "Thank you for visiting!"
     when "n"
-      puts "-------------------------------------------------------".colorize(:yellow)
-      puts "1. Go back to the Bestsellers List"
-      puts "2. Go back to the Categories"
-      puts "3. Search for another Bestsellers List"
-      puts "4. Exit the program"
-      print "Choose an option to continue: "
-      input = gets.strip.downcase
-      case input
-      when "1"
-        Book.all.clear
-        new_book = pick_book(category, date)
-        get_more_info(new_book)
-        menu_options(date, category, book)
-      when "2"
-        Book.all.clear
-        new_category = pick_category
-        new_book = pick_book(new_category, date)
-        get_more_info(new_book)
-        menu_options(date, new_category, new_book)
-      when "3"
-        call
-      when "4"
-        exit
-      else
-        print "I'm sorry. I didn't understand what you meant."
-        menu_options(date, category, book)
-      end
+      menu_options(date, category, book)
+    else
+      puts "Invalid Input! Please try again."
+      get_more_info(date, category, book)
     end
   end
 
+  def menu_options(date, category, book)
+    puts "-------------------------------------------------------".colorize(:yellow)
+    puts "1. Go back to the Bestsellers List"
+    puts "2. Go back to the Categories"
+    puts "3. Search for another Bestsellers List"
+    puts "4. Exit the program"
+    print "Choose an option to continue: "
+    input = gets.strip.downcase
+    case input
+    when "1"
+      Book.all.clear
+      new_book = pick_book(category, date)
+      get_more_info(date, category, new_book)
+      menu_options(date, category, book)
+    when "2"
+      Book.all.clear
+      new_category = pick_category
+      new_book = pick_book(new_category, date)
+      get_more_info(date, new_category, new_book)
+      menu_options(date, new_category, new_book)
+    when "3"
+      call
+    when "4"
+      puts "Thank you for visiting!"
+      exit
+    else
+      puts "I'm sorry. I didn't understand what you meant."
+      menu_options(date, category, book)
+    end
+  end
   def get_date
     date = gets.strip
     if(/^20[012][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])/.match(date))
