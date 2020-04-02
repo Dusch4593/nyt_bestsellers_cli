@@ -11,4 +11,14 @@ module Gettable
       self.get_index
     end
   end
+
+  def get_date
+    date = gets.strip
+    if(/^20[012][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])/.match(date))
+      date
+    else
+      print "Invalid Date! Please enter a valid date(YYYY-MM-DD): "
+      self.get_date
+    end
+  end
 end
