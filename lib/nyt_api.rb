@@ -8,10 +8,10 @@ class NYTimesAPI
   # each API call
 
   def self.fetch_bestseller_list(date, category)
+    Book.all.clear
     response = RestClient.get("#{self.base_url}#{date}/#{category}.json?api-key=#{self.api_key}")
     response = JSON.parse(response.body, symbolize_names:true)
     results = response[:results][:books]
-    #binding.pry
     results
   end
 
@@ -20,7 +20,7 @@ class NYTimesAPI
     response = RestClient.get("#{self.base_url}names.json?api-key=#{self.api_key}")
     response = JSON.parse(response.body, symbolize_names:true)
     results = response[:results]
-    results = results.slice(0, results.length-44)
+    results = results.slice(0, results.length-54)
     results
   end
 

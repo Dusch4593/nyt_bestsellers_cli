@@ -8,7 +8,6 @@ class Category
   def initialize(display_name, list_name_encoded)
     @display_name = display_name
     @list_name_encoded = list_name_encoded
-    @books = []
     save
   end
 
@@ -31,17 +30,18 @@ class Category
     # Return category array
 
     # NOTE: Display a max of 15 categories!
-    results = NYTimesAPI.fetch_categories
-    category_array = results.collect do |result|
-      self.new(result[:display_name], result[:list_name_encoded])
+    if(self.all.empty?)
+      results = NYTimesAPI.fetch_categories
+      category_array = results.collect do |result|
+        self.new(result[:display_name], result[:list_name_encoded])
+      end
     end
-    category_array
   end
 
   # Displays an ordered list of the Categories
   def self.display_categories
-
-    category_array = self.load_categories
+    self.load_categories
+    category_array = self.all
     puts "Loading Categories...".colorize(:light_cyan)
     sleep 3
     category_array.each.with_index(1) do |category, index|

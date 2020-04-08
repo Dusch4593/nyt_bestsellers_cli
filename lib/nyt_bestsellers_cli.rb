@@ -28,7 +28,7 @@ class NYT_Bestsellers_CLI
     Category.display_categories
     # store chosen category to 'category_index'
     print "Choose a category from the list above: "
-    category_index = self.get_index
+    category_index = self.get_index(5)
     chosen_category = Category.all[category_index]
     chosen_category
   end
@@ -39,14 +39,14 @@ class NYT_Bestsellers_CLI
     category.display_books(date, category_url)
     puts "-------------------------------------------------------".colorize(:yellow)
     print "Choose a book from the list above to learn more about it: "
-    book_index = self.get_index
+    book_index = self.get_index(15)
     chosen_book = Book.all[book_index]
     chosen_book
   end
 
   def get_more_info(date, category, book)
     puts "-------------------------------------------------------".colorize(:yellow)
-    book.display_info
+    display_info(book)
     print "Would you like to support local book stores and buy online? (y/n | #{book.local_link}): "
     input = gets.strip.downcase
     case input
@@ -71,12 +71,10 @@ class NYT_Bestsellers_CLI
     input = gets.strip.downcase
     case input
     when "1"
-      Book.all.clear
       new_book = pick_book(category, date)
       get_more_info(date, category, new_book)
       menu_options(date, category, book)
     when "2"
-      Book.all.clear
       new_category = pick_category
       new_book = pick_book(new_category, date)
       get_more_info(date, new_category, new_book)
@@ -90,5 +88,13 @@ class NYT_Bestsellers_CLI
       puts "I'm sorry. I didn't understand what you meant."
       menu_options(date, category, book)
     end
+  end
+
+  # Display information for a given Book object
+  def display_info(book)
+    puts "Title: #{book.format_title}"
+    puts "Author: #{book.author}"
+    puts "Price: $#{book.price}"
+    puts "Description: #{book.description}"
   end
 end

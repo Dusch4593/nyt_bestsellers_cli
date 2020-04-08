@@ -1,7 +1,4 @@
 #!/usr/bin/env ruby
-
-require "rubygems"
-require "pry"
 require_relative "../config/nyt_bestsellers_cli"
 
 NYT_Bestsellers_CLI.new.call
