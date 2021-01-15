@@ -19,15 +19,15 @@ class Book
     self.class.all << self
   end
 
-  def self.load_books(date, category)
-    results = NYTimesAPI.fetch_bestseller_list(date, category)
+  def self.load_books(date, category_url)
+    results = NYTimesAPI.fetch_bestseller_list(date, category_url)
     results.collect do |result|
       book = self.new(result[:title])
       book.author = result[:author]
       book.rank = result[:rank]
       book.price = result[:price]
       book.description = result[:description]
-      book.category = category.split("-").each{|w| w.capitalize!}.join(" ")
+      book.category = category_url.split("-").each{|w| w.capitalize!}.join(" ")
       book.local_link = result[:buy_links].last[:url]
     end
   end

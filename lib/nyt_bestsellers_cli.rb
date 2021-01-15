@@ -34,10 +34,10 @@ class NYT_Bestsellers_CLI
   end
 
   def pick_book(category, date)
-    binding.pry
     category_url = category.list_name_encoded
+    category_name = category.display_name
     puts "-------------------------------------------------------".colorize(:yellow)
-    category.display_books_with_date_and_category(date, category_url)
+    category.display_books_with_category_data(date, category_name, category_url)
     puts "-------------------------------------------------------".colorize(:yellow)
     print "Choose a book from the list above to learn more about it: "
     book_index = self.get_index(15)
