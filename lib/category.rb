@@ -49,12 +49,12 @@ class Category
     end
   end
 
-  def display_books(date, category)
+  def display_books_with_date_and_category(date, category)
     # Use some Book method to use the selected index to access
     books = Book.load_books(date, category)
-    puts "Loading Bestsellers List...".colorize(:light_cyan)
+    puts "Loading Best Sellers List...".colorize(:light_cyan)
     sleep 3
-    puts "Here are the Top 15 books on the NYT Bestsellers List!"
+    puts "Here are the Top 15 NYT Best Sellers in [name-of-category-here]"
     Book.display_books
   end
 end

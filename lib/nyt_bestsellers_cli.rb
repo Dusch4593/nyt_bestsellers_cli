@@ -1,7 +1,7 @@
 class NYT_Bestsellers_CLI
   include Gettable
   def call
-    puts "Welcome to the New York Times Bestsellers List, CLI Edition!".colorize(:red)
+    puts "Welcome to the New York Times Best Sellers List, CLI Edition!".colorize(:red)
     puts "------------------------------------------------------------".colorize(:yellow)
     puts "This project uses data from the NYT Books API (https://developer.nytimes.com)"
     puts "The NYT Bestsellers List has featured some".colorize(:light_yellow)
@@ -34,9 +34,10 @@ class NYT_Bestsellers_CLI
   end
 
   def pick_book(category, date)
+    binding.pry
     category_url = category.list_name_encoded
     puts "-------------------------------------------------------".colorize(:yellow)
-    category.display_books(date, category_url)
+    category.display_books_with_date_and_category(date, category_url)
     puts "-------------------------------------------------------".colorize(:yellow)
     print "Choose a book from the list above to learn more about it: "
     book_index = self.get_index(15)
@@ -63,9 +64,9 @@ class NYT_Bestsellers_CLI
 
   def menu_options(date, category, book)
     puts "-------------------------------------------------------".colorize(:yellow)
-    puts "1. Go back to the Bestsellers List"
+    puts "1. Go back to the Best Sellers List"
     puts "2. Go back to the Categories"
-    puts "3. Search for another Bestsellers List"
+    puts "3. Search for another Best Sellers List"
     puts "4. Exit the program"
     print "Choose an option to continue: "
     input = gets.strip.downcase
