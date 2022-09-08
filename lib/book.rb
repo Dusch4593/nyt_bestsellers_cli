@@ -25,7 +25,6 @@ class Book
       book = self.new(result[:title])
       book.author = result[:author]
       book.rank = result[:rank]
-      book.price = result[:price]
       book.description = result[:description]
       book.category = category_url.split("-").each{|w| w.capitalize!}.join(" ")
       book.local_link = result[:buy_links].last[:url]
