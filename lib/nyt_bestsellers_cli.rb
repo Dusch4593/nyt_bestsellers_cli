@@ -48,7 +48,7 @@ class NYT_Bestsellers_CLI
   def get_more_info(date, category, book)
     puts "-------------------------------------------------------".colorize(:yellow)
     display_info(book)
-    print "Would you like to support local book stores and buy online? (y/n | #{book.local_link}): "
+    print "Would you like to support local book stores and buy online on IndieBound? (y/n): "
     input = gets.strip.downcase
     case input
     when "y"

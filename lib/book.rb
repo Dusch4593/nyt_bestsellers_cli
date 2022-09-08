@@ -55,7 +55,6 @@ class Book
 
   # This opens a a selected Book's page on www.indiebound.org
   def buy_local
-    #binding.pry
     system("open", self.local_link) # Book.url should be a String; this method actually opens a web page!!!
   end
 end
