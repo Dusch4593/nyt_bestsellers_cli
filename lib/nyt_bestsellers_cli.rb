@@ -16,8 +16,8 @@ class NYT_Bestsellers_CLI
 
   def pick_date
     # ask user to give a date in YYYY-MM-DD format (and it mustn't be before June, 6th, 2008).
-    puts "Unfortunately, the NYT Books API seems to only fetch list data from as far back as June 6th, 2008 (2008-06-02)"
-    print "Please enter a valid date (YYYY-MM-DD): "
+    puts "Unfortunately, the NYT Books API seems to only fetch list data from as far back as June 6th, 2008"
+    print "Please enter a valid date: "
     # store a valid date to 'date'
     date = self.get_date
     puts "-------------------------------------------------------".colorize(:yellow)
@@ -95,7 +95,6 @@ class NYT_Bestsellers_CLI
   def display_info(book)
     puts "Title: #{book.format_title}"
     puts "Author: #{book.author}"
-    puts "Price: $#{book.price}"
     puts "Description: #{book.description}"
   end
 end
