@@ -1,72 +1,72 @@
-# New York Times Bestsellers CLI
-This is my first CLI project written with Ruby. It is currently a work-in-progress
-and there will be many edits to files along with the addition and deletion of
-others.
+# New York Times Best Seller CLI
 
-You'll be able to access book information from the New York Times Bestsellers
-lists based on a given date and category*.
+This is my command line interface (CLI) project is written in Ruby.
 
-\* *From the Weekly Bestsellers lists, not the Monthly*
+You can access book information from the New York Times Best Seller
+list based on a given date and category*.
 
-TODO: Wireframe class structure for:
-* CLI
-* Book
-* Category
+\* _From the Weekly Best Seller lists, not the Monthly_
 
 ## Installation
 
 Fork and clone this repository to your local machine. Save it somewhere it'll be easy to find. Then, `cd` into `nyt_bestsellers_cli`.
 
 ### Getting an API Key
+
 This project uses the New York Times Books API. As far as I know, you'll have to [sign up for an account](https://developer.nytimes.com/accounts/create) on the New York Times Developer Network in order to be able to generate an API key. You'll need this key to be able to fetch the Book and Category data.
 
 ### Working with `dotenv`
+
 For security reasons, it's generally a good idea to take measures to ensure sensitive information isn't exposed to hackers. One of the ways I found was storing the API key as an *environment variable* that can only be seen on your local machine; the actual key isn't seen on the frontend at all.
 
-Be sure to change the name of `example.env` to `.env` and edit:
+Be sure to change the name of `example.env` to `.env` and assign to the `NYT_API_KEY`:
 
 ```
 NYT_API_KEY = "your-api-key-here-between-the-quotes"
 ```
 
 ## Usage
-Change into the directory of this repo and enter the following command
+
+Change into the directory of this repo and run the following command
 in your terminal:
 
 ```
 $ ruby bin/nyt_bestsellers_cli
 ```
 
-You'll be welcomed to the program and asked to give a date in this format: `YYYY-MM-DD`
+You'll be welcomed to the program and asked to provide a valid date in one of the following formats:
+
+- `YYYY-MM-DD`
+- `MM-DD-YYYY`
+- `M-D-YYYY`
+- `M-DD-YYYY` / `MM-D-YYYY`
 
 ```
-Welcome to the New York Times Bestsellers Generator!
-
-Published weekly since 1931, the NYT Bestsellers List has
-featured some of America's most successful and widely
-read books in the United States!
-
-Unfortunately, the NYT Books API seems to only fetch list data from as far back as June 6th, 2008 (2008-06-02).
-
-Please enter a valid date (YYYY-MM-DD):
+Welcome to the New York Times Best Seller list, CLI Edition!
+------------------------------------------------------------
+This project uses data from the NYT Books API (https://developer.nytimes.com)
+The NYT Best Seller list has featured some
+of America's most successful and widely read books!
+Come search for Best Sellers!
+Unfortunately, the NYT Books API seems to only fetch
+list data from as far back as June 6th, 2008.
+Please enter a valid date:
 ```
 
 You'll then be presented with a list of categories; you must select one by
 entering its corresponding number.
 
-Choose a category, and you will then be shown the NYT Bestsellers List based
+Choose a category, and you will then be shown the NYT Best Seller list based
 on the date you gave.
 
 Select a book to get more information.
 
 At the end of the program, you'll be asked if you'd like to
-help support local book stores who are struggling during the
-COVID-19 outbreak. If you type `y` your Internet browser will direct you to
-www.indiebound.org where you can buy the selected book from a local store.
+help support local book stores near you. If you type `y` your Internet browser will direct you to
+[www.indiebound.org](https://www.indiebound.org/) where you can buy the selected book from a local store.
 
 Please enjoy and feel free to let me know if you have any issues with
 setup or usage! 
-
 
 ## Development
 
@@ -76,8 +76,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/nyt_bestsellers_cli. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/nyt_bestsellers_cli/blob/master/CODE_OF_CONDUCT.md).
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/Dusch4593/nyt_bestsellers_cli. This project is intended to be a safe, welcoming space for collaboration.
 
 ## License
 
@@ -85,4 +84,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the NytBestsellersCli project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/nyt_bestsellers_cli/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the NytBestsellersCli project's codebases, issue trackers, chat rooms, and mailing lists is expected to follow the [code of conduct](https://github.com/Dusch4593/nyt_bestsellers_cli/blob/master/CODE_OF_CONDUCT.md).

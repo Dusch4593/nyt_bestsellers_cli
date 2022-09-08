@@ -1,13 +1,12 @@
 class NYT_Bestsellers_CLI
   include Gettable
   def call
-    puts "Welcome to the New York Times Best Sellers List, CLI Edition!".colorize(:red)
+    puts "Welcome to the New York Times Best Seller list, CLI Edition!".colorize(:red)
     puts "------------------------------------------------------------".colorize(:yellow)
     puts "This project uses data from the NYT Books API (https://developer.nytimes.com)"
-    puts "The NYT Bestsellers List has featured some".colorize(:light_yellow)
-    puts "of America's most successful and widely".colorize(:light_yellow)
-    puts "read books!".colorize(:light_yellow)
-    puts "Come search for bestsellers!".colorize(:light_yellow)
+    puts "The NYT Best Seller list has featured some".colorize(:light_yellow)
+    puts "of America's most successful and widely read books!".colorize(:light_yellow)
+    puts "Come search for Best Sellers!".colorize(:light_yellow)
     date = pick_date
     category = pick_category
     book = pick_book(category, date)
@@ -16,7 +15,8 @@ class NYT_Bestsellers_CLI
 
   def pick_date
     # ask user to give a date in YYYY-MM-DD format (and it mustn't be before June, 6th, 2008).
-    puts "Unfortunately, the NYT Books API seems to only fetch list data from as far back as June 6th, 2008"
+    puts "Unfortunately, the NYT Books API seems to only fetch"
+    puts "list data from as far back as June 6th, 2008."
     print "Please enter a valid date: "
     # store a valid date to 'date'
     date = self.get_date
@@ -64,9 +64,9 @@ class NYT_Bestsellers_CLI
 
   def menu_options(date, category, book)
     puts "-------------------------------------------------------".colorize(:yellow)
-    puts "1. Go back to the Best Sellers List"
+    puts "1. Go back to the Best Seller list"
     puts "2. Go back to the Categories"
-    puts "3. Search for another Best Sellers List"
+    puts "3. Search for another Best Seller list"
     puts "4. Exit the program"
     print "Choose an option to continue: "
     input = gets.strip.downcase
